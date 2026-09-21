@@ -1,0 +1,12 @@
+name: Upload ISO
+on: workflow_dispatch
+jobs:
+  download_iso:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download and Upload to Release
+        run: |
+          wget -O windows-setup.iso "https://drive.usercontent.google.com/download?id=1Dzyh3gv4nhK7LKOoz2G9AyG-EC43Kai5&export=download&authuser=0&confirm=t&uuid=2e6491b3-8d76-4fa4-a4d4-281034d3abfe&at=AMrWOn0Qk7NoPeAct_YfHa41mcCm%3A1789997532907"
+          gh release create v1 windows-setup.iso --title "Windows ISO" --notes "Clean build"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
